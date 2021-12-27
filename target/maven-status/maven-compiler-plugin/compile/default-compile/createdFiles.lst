@@ -1,0 +1,5 @@
+com\Assesment\demo\DAO\UserDAO.class
+com\Assesment\demo\controller\UserListController.class
+com\Assesment\demo\DemoApplication.class
+com\Assesment\demo\model\User.class
+com\Assesment\demo\repository\UserRepository.class

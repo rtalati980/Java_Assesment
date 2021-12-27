@@ -1,0 +1,33 @@
+CREATE TABLE "USERS" (
+    "ID" NUMBER NOT NULL ENABLE,
+    "FNAME" VARCHAR2(50 BYTE) NOT NULL ENABLE,
+    "LNAME" VARCHAR2(50 BYTE) NOT NULL ENABLE,
+    "DOB" VARCHAR2(50 BYTE) NOT NULL ENABLE,
+     "CITY" VARCHAR2(50 BYTE) NOT NULL ENABLE,
+    "MOBILENO" VARCHAR2(10 BYTE) NOT NULL ENABLE,
+    CONSTRAINT "USERS_PK" PRIMARY KEY ("ID")
+)
+
+
+
+CREATE SEQUENCE "users_seq" MINVALUE 1 MAXVALUE 100000 INCREMENT BY 1 START WITH 1;
+
+CREATE TRIGGER "SYSTEM"."USERS_PK"
+   before insert on "SYSTEM"."USERS"
+   for each row
+begin 
+   if inserting then
+      if :NEW."ID" is null then
+         select users_seq.nextval into :NEW."ID" from dual;
+      end if;
+   end if;
+end;
+/
+
+
+
+INSERT INTO USERS (Fname, Lname, DOB, city, mobileno)
+ values ('User', 'example','12-04-16', 'pune', '9827631232'); 
+
+
+lsnrctl start
